@@ -28,7 +28,7 @@ const Login = () => {
       // Redirect based on role
       if (role === 'admin') history.push('/admin');
       else if (role === 'technician') history.push('/technician');
-      else history.push('/user');
+      else history.push('/userdashboard');
     } else {
       alert('Login failed. Please check your credentials.');
     }
