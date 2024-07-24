@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Pie } from 'react-chartjs-2';
 import './Userdashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +7,11 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FAQ from './FAQ';
+import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
+
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const UserDashboard = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +19,52 @@ const UserDashboard = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const data = {
+    labels: ['5 ★', '4 ★', '3 ★', '2 ★', '1 ★'],
+    datasets: [
+      {
+        label: '# of Votes',
+        data: [89.86, 4.07, 3.93, 3.71, 3.36],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+    },
+  };
+
+
+  const reviews = [
+    { name: 'Saurabh', date: 'July 2024', rating: 5, comment: 'Very nice service' },
+    { name: 'Bharat', date: 'July 2024', rating: 5, comment: 'Very nice service and polite nature' },
+    { name: 'Pawan', date: 'July 2024', rating: 5, comment: 'Good experience namaste shoaib sir❤️' },
+    { name: 'Jagbeer', date: 'July 2024', rating: 5, comment: 'Good service' },
+    { name: 'Saara', date: 'July 2024', rating: 5, comment: 'Like the politeness' },
+    { name: 'Annu', date: 'July 2024', rating: 5, comment: 'Great experience' },
+    { name: 'Zainul', date: 'July 2024', rating: 3, comment: "I didn't get 250 UC credit as confirmed by the Executive" },
+    { name: 'Satyajeet', date: 'July 2024', rating: 5, comment: 'Very good 👍 service' },
+];
 
   return (
     <div className="container">
@@ -884,6 +936,67 @@ const UserDashboard = () => {
         <div className="menu-option">Install <FontAwesomeIcon icon={faPlus} className="ms-2" /></div>
       </div>
       </div>
+
+      <React.StrictMode>
+        <FAQ />
+      </React.StrictMode>,
+
+      <div className="container mt-12">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2>Customer Reviews</h2>
+      </div>
+      <div className="row">
+        <div className="col-md-6">
+          <h3>Rating Distribution</h3>
+          <div className="chart-container" style={{ position: 'relative', height: '400px', width: '400px' }}>
+            <Pie data={data} options={options} />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="row">
+            {reviews.map((review, index) => (
+              <div className="col-md-6 mb-3" key={index}>
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{review.name}</h5>
+                    <h6 className="card-subtitle mb-6 text-muted">{review.date}</h6>
+                    <p className="card-text">{review.comment}</p>
+                    <div className="text-warning">
+                      {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div className="container">
+      <h1 className="text-center mb-4">What are people near me looking for?</h1>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="card mb-3">
+            <div className="card-body">
+              <h5 className="card-title">Washing Machine Repair</h5>
+              <p className="card-text">Top Washing Machine Repair services near me</p>
+              <p className="card-text">Top-class reliable Washing Machine Repair services at your convenience near me. * Trained professionals * Best prices</p>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="card mb-3">
+            <div className="card-body">
+              <h5 className="card-title">AC repair</h5>
+              <p className="card-text">Top AC services near me</p>
+              <p className="card-text">Top-class reliable AC services at your convenience near me. * Trained professionals * Best prices</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     </div>
   );
 };
