@@ -67,3 +67,13 @@
   width: 10%;
   margin: auto;
 }
+
+.card-title {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.card-text {
+  font-size: smaller;
+  font-weight: 100;
+}

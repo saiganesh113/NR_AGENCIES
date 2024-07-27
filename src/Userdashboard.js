@@ -64,7 +64,85 @@ const UserDashboard = () => {
     { name: 'Annu', date: 'July 2024', rating: 5, comment: 'Great experience' },
     { name: 'Zainul', date: 'July 2024', rating: 3, comment: "I didn't get 250 UC credit as confirmed by the Executive" },
     { name: 'Satyajeet', date: 'July 2024', rating: 5, comment: 'Very good 👍 service' },
-];
+  ];
+
+  const content = [
+    {
+      title: 'Window AC Installation - A Symphony Of Simplicity',
+      text: 'Experience hassle-free window AC installation with our expert services, ensuring seamless integration into your space. Enjoy simplicity and efficiency as we make your comfort our priority.'
+    },
+    {
+      title: 'Window AC Service: Where Convenience Meets Expertise',
+      text: 'Discover unparalleled convenience with our window AC service, where expertise ensures optimal performance. Trust our team to deliver top-tier care for your cooling needs.'
+    },
+    {
+      title: 'Mastering The Split AC Installation Extravaganza',
+      text: 'Embrace precision and excellence with our split AC installation services. Our experts ensure a seamless and perfectly choreographed setup for your ultimate comfort.'
+    },
+    {
+      title: 'Proactive Measures: AC Service Booking For The Win',
+      text: 'Stay ahead with our proactive AC service booking, guaranteeing top performance and longevity. Schedule easily and enjoy uninterrupted comfort all year round.'
+    },
+    {
+      title: 'AC Services Tailored To You',
+      text: 'Enjoy customized AC services designed to meet your unique needs. Our experts ensure your cooling system performs at its best, providing comfort and reliability.'
+    },
+    {
+      title: 'Booking Made Easy: AC Service Application',
+      text: 'In this fast-paced world, convenience is key. With our user-friendly ac service application, booking a service is just a tap away. No more waiting in queues or searching tirelessly for an "ac service near me," or "ac repair near me." We bring the expertise to your doorstep.'
+    },
+    {
+      title: 'The Ballet Of Best AC Service Near You',
+      text: 'In the realm of split ac, excellence is non-negotiable. Our services not only guarantee a seamless installation but also encompass the best ac service near you. We understand that your cooling experience begins with the installation, and we take pride in delivering nothing short of perfection.'
+    },
+    {
+      title: 'The Art of Split AC Service: Keeping The Cool Vibes Alive',
+      text: 'Once the split ac is on stage, the show must go on smoothly. Our split ac service is a testament to our commitment to keeping your cool vibes alive. From routine maintenance to unexpected hiccups, our experts are just a call away, ensuring your split ac remains the star of the show.'
+    },
+    {
+      title: 'Home AC Service: Bringing Comfort Home',
+      text: 'Your home deserves the best, and our home ac service is crafted to deliver just that. With a focus on efficiency and customer satisfaction, our experts ensure that your window ac not only cools your space but does so with the utmost reliability.'
+    },
+  ];
+
+  const content1 = [
+    {
+      title1: "Transparent Pricing and Hassle-Free Transactions",
+      text1: "No more hidden fees or sudden shocks! Urban Company ensures that you're aware of all your costs from the get-go. We believe in clear, straightforward pricing based on the selected services. Plus, with our digital payment methods, you can settle your service charges securely and at your convenience, even from the warmth of your home."
+    },
+    {
+      title1: "Competitive Edge Over Others",
+      text1: "Wondering why NR agencies stands out in the crowd? Unlike our competitors like NoBroker, OneAssist, and OnSiteGo, we prioritize not just fixing issues but providing an unparalleled experience. While others may focus on one aspect, NR Agencies is your holistic partner in ensuring your AC runs smoothly and efficiently."
+    },
+    {
+      title1: "Convenience Redefined",
+      text1: "Say goodbye to the hassle of searching 'ac service centre near me' – NR agencies brings the service center to your doorstep. Our on-time service and hassle-free experience ensure that you can sit back and relax while we take care of your AC troubles."
+    },
+    {
+      title1: "Environmentally Friendly Practices",
+      text1: "Are you troubled by the environmental implications of AC servicing? Put your worries aside, as we echo your thoughts. As a result, we opt for green and harmless solutions that pose zero risks to your loved ones, including the little ones and furry friends. With NR Agencies, achieve a chilly and cozy home without shirking from your eco-conscious duties."
+    },
+    {
+      title1: "Comprehensive AC Solutions, Near Me",
+      text1: "Whether it's Split or Window AC installation, repair, or a routine check-up, NR Agencies offers a comprehensive range of services tailored to your needs. From 'ac gas refill' to 'ac maintenance services,' we've got it all covered. Our commitment to being a one-stop solution for all your AC requirements sets us apart from the rest."
+    },
+    {
+      title1: "Expertise that Speaks Volumes",
+      text1: "At NR Agencies, we take pride in the expertise of our technicians. Our team is not just trained; they are seasoned professionals who understand the ins and outs of AC servicing, repair, and installation. When you choose us, you're not just getting a service; you're getting an experience backed by years of knowledge and hands-on expertise. No more settling for mediocre service – NR Agencies delivers excellence."
+    },
+    {
+      title1: "Seamless Booking with a Click",
+      text1: "NR Agencies understands that your time is precious. Our user-friendly platform allows you to book AC services near you with just a few clicks. No more hassle of finding 'ac service centre near you’ options – we've streamlined the process for your convenience. Your comfort is our priority, starting from the moment you decide to book our services."
+    },
+    {
+      title1: "Trustworthiness You Can Count On",
+      text1: "Trust is the cornerstone of any service, especially when it comes to something as vital as your AC. We understand the trust you place in us, and we reciprocate it with transparency and reliability. Our commitment to being the best in the business is reflected in every aspect of our service – from the first interaction to the final result. Choose NR Agencies for AC service and repair that you can trust without second-guessing."
+    },
+    {
+      title1: "Unmatched Warranty and Satisfaction Guarantee",
+      text1: "Our faith in the excellence of our efforts is solid, which is reflected in our 30-day service warranty. Should you face any hiccups during this span, remember, we are just a call away, ready to set it all straight, no inquisitions involved. Ensuring your happiness is our objective, and we would move mountains to make sure you are entirely pleased with the outcome."
+    }
+  ];
 
   return (
     <div className="container">
@@ -971,32 +1049,78 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
     
-    <div className="container">
+      <div className="container">
       <h1 className="text-center mb-4">What are people near me looking for?</h1>
       <div className="row">
         <div className="col-md-6">
           <div className="card mb-3">
             <div className="card-body">
-              <h5 className="card-title">Washing Machine Repair</h5>
-              <p className="card-text">Top Washing Machine Repair services near me</p>
-              <p className="card-text">Top-class reliable Washing Machine Repair services at your convenience near me. * Trained professionals * Best prices</p>
+              <div className="row">
+                <div className="col-4">
+                  <a><img src='/washing machine service.png' alt="Washing Machine Repair" className="img-fluid" /></a>
+                </div>
+                <div className="col-8">
+                  <h5 className="card-title">Washing Machine Repair</h5>
+                  <p className="card-text">Top Washing Machine Repair services near me</p>
+                  <p className="card-text">Top-class reliable Washing Machine Repair services at your convenience near me. * Trained professionals * Best prices</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="col-md-6">
           <div className="card mb-3">
             <div className="card-body">
-              <h5 className="card-title">AC repair</h5>
-              <p className="card-text">Top AC services near me</p>
-              <p className="card-text">Top-class reliable AC services at your convenience near me. * Trained professionals * Best prices</p>
+              <div className="row">
+                <div className="col-4">
+                  <a><img src='/ac service.png' alt="AC repair" className="img-fluid" /></a>
+                </div>
+                <div className="col-8">
+                  <h5 className="card-title">AC repair</h5>
+                  <p className="card-text">Top AC services near me</p>
+                  <p className="card-text">Top-class reliable AC services at your convenience near me. * Trained professionals * Best prices</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      </div>
+      
+      <div className="container mt-4">
+      <h3 className="text-center mb-4">Spotting The Signs: When To Seek AC Service Near Me</h3>
+      <div className="row">
+        {content.map((item, index) => (
+          <div className="col-md-4 mb-2" key={index}>
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">{item.title}</h5>
+                <p className="card-text">{item.text}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      </div>
+      
+      <div className="container mt-5">
+      <h1 className="text-center mb-5">Why Choose Urban Company For Your AC Service And Repair Needs Near Me?</h1>
+      <p className="text-center mb-4">Are you tired of searching for 'ac repair services near me' or 'split ac service near me' and ending up with more confusion than solutions? Look no further – Urban Company is here to redefine your AC service experience near your area. Wondering what sets us apart? Let's dive into the reasons why choosing Urban Company is the smart choice for all your AC needs.</p>
+      <div className="row">
+        {content1.map((item, index) => (
+          <div className="col-md-4 mb-2" key={index}>
+            <div className="card h-100">
+              <div className="card-body">
+                <h5 className="card-title">{item.title1}</h5>
+                <p className="card-text">{item.text1}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
-
     </div>
   );
 };
