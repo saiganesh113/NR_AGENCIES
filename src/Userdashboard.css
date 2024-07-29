@@ -97,3 +97,8 @@ h4 {
   font-size: medium;
   font-weight: 700;
 }
+
+li {
+  font-size: smaller;
+  font-weight: 100;
+}

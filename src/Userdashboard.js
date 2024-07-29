@@ -3,6 +3,7 @@ import { Pie } from 'react-chartjs-2';
 import './Userdashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, Element } from 'react-scroll';
+import { Card, CardBody, CardTitle, CardText, Button } from 'react-bootstrap'; 
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faWeight } from '@fortawesome/free-solid-svg-icons';
@@ -1407,6 +1408,332 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
+
+      <Container>
+      <Row className="mt-5">
+        <Col md="12">
+          <h4 className="text-center">Know More In Depth About AC Services And Repair Services By Urban Company Near Me</h4>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Power Jet AC Service (Window)</CardTitle>
+              <CardText>
+                Experience the intensity of our Powerlet AC service for window ACs. Enjoy intense cleaning of the indoor unit and basic cleaning of the outdoor unit. Conveniently available for AC service near me.
+              </CardText>
+              <ul>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+                <li>Final checks: Technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Power Jet Split AC Service</CardTitle>
+              <CardText>
+                Seeking an enhanced cooling performance for your AC? Urban Company's Powerlet servicing is your answer. We offer an intense cleaning of the indoor unit and basic cleaning of the outdoor unit, ensuring your AC operates at its best.
+              </CardText>
+              <ul>
+                <li>AC Cleaning: Deep cleaning of filters, coil, fins, and drain trays with the powerjet.</li>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Gas Leak Fix & Refill</CardTitle>
+              <CardText>
+                <ul>
+                <li>Gas refill: Filling of the gas by weight/ back pressure.</li>
+                <li>Post-service cleanup: Cleanup of the AC & service area.</li>
+                <li>Final checks: Technician checks AMP, pressure, air flow, temp, noise level at the end to ensure quality.</li>
+                <li>Leak identification & fixing: Leak testing with nitrogen, compressed air & soap solution. Fixing the leaks by brazing & rechecking.</li>
+                <li>Pre-service checks: Voltage, ampere, pressure, and other safety checks.</li>
+                </ul>
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Foam & Power Jet Window AC Service</CardTitle>
+              <CardText>
+                Discover the excellence of Urban Company's Foam + Powerlet technology for your window AC. For AC service near me, experience 2X deeper dust removal.
+              </CardText>
+              <ul>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+                <li>AC Cleaning: Deep cleaning of filters, coil, fins, and drain trays with foam and powerjet.</li>
+                <li>Final checks: The technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Anti-rust Deep Clean AC Service</CardTitle>
+              <CardText>
+                Prevent frequent gas leakages with our unique anti-rust formula, applicable to both split and window ACs. Enjoy a 30 days warranty for reliable AC repair near me with Urban Company.
+              </CardText>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">AC Repair (Split/Window)</CardTitle>
+              <h6 className="mt-3">What are some common problems our AC repair service addresses?</h6>
+              <ul>
+                <li>Water Leakage</li>
+                <li>Power Issue</li>
+                <li>Less/No Cooling</li>
+              </ul>
+              <h6 className="mt-3">What's Included!</h6>
+              <ul>
+                <li>Enjoy a 30 days warranty.</li>
+                <li>AC repair using high-quality spare parts & tools</li>
+                <li>Final checks & cleanup.</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="mt-5">
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Foam & Power Jet AC Service (Split AC)</CardTitle>
+              <CardText>
+                Looking for reliable AC service near me? Urban Company's Foam + Powerlet technology offers an unparalleled experience, providing 2X deeper dust removal. We guarantee an intense cleaning of both indoor and outdoor units, going beyond the surface to give your AC the treatment it deserves.
+              </CardText>
+              <ul>
+                <li>Indoor unit cleaning: Deep cleaning of filters, coil, fins, and drain trays with foam and powerjet.</li>
+                <li>Mess-free experience: AC jacket for spill prevention during service and post-service cleanup.</li>
+                <li>Pre-service checks: A detailed inspection, including gas checks, to identify repairs</li>
+                <li>Final checks: Our technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+                <li>Outdoor unit cleaning: Thorough cleaning with a powerjet, ensuring a mess-free experience.</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+        <Col md="4">
+          <Card>
+            <CardBody>
+              <CardTitle tag="h5">Service Comparison from other competitors</CardTitle>
+              <ul>
+                <li>Internal Parts Cleaning: Urban Company ensures the cleaning of all internal parts, a feature uncertain in others services.</li>
+                <li>Cleaning Tools: We utilize foam cleaning & powerjet, setting us apart from manual cleaning with brush & water.</li>
+                <li>Warranty: Enjoy a 30-day warranty with Urban Company, a benefit others may not provide</li>
+                <li>Impact on cooling coil: Urban Company ensures no impact on the cooling coil, unlike others who use brush cleaning, increasing the chances of coil bending.</li>
+                <li>Expected life: Urban Company: 2-3 years, Others 1-3 months.</li>
+                <li>AC power consumption: Low after Urban Company service, high after others services.</li>
+                <li>Gas Leak Identification & Leak Fixing: Urban Company provides this service while others don't.</li>
+              </ul>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
+      </Container>
+
+      <Container className="mt-5">
+      <h4 className="text-center mb-4">Know More In Depth About AC Services And Repair Services By Urban Company Near Me</h4>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">Power Jet AC Service (Window)</Card.Header>
+            <Card.Body>
+              <p>Experience the intensity of our Powerlet AC service for window ACs. Enjoy intense cleaning of the indoor unit and basic cleaning of the outdoor unit. Conveniently available for AC service near me.</p>
+              <ul>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+                <li>Final checks: Technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+              </ul>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">Anti-rust Deep Clean AC Service</Card.Header>
+            <Card.Body>
+              <p>Prevent frequent gas leakages with our unique anti-rust formula, applicable to both split and window ACs. Enjoy a 30 days warranty for reliable AC repair near me with Urban Company.</p>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">Power Jet Split AC Service</Card.Header>
+            <Card.Body>
+              <p>Seeking an enhanced cooling performance for your AC? Urban Company's Powerlet servicing is your answer. We offer an intense cleaning of the indoor unit and basic cleaning of the outdoor unit, ensuring your AC operates at its best.</p>
+              <ul>
+                <li>AC cleaning: Deep cleaning of filters, coil, fins, and drain trays with the powerjet.</li>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+                <li>Final checks: The technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+              </ul>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">AC Repair (Split/Window)</Card.Header>
+            <Card.Body>
+              <p>For a detailed issue diagnosis and same-day resolution, Urban Company's AC repair services near me have you covered. Whether it's less/no cooling, power on issues, unwanted noise/smell, or water leakage, we provide a 30 days warranty for all repairs.</p>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">Gas Leak Fix & Refill</Card.Header>
+            <Card.Body>
+              <ul>
+                <li>Gas refill: Filling of the gas by weight/ back pressure.</li>
+                <li>Post-service cleanup: Cleanup of the AC & service area.</li>
+                <li>Final checks: Technician checks AMP, pressure, air flow, temp, noise level at the end to ensure quality.</li>
+                <li>Leak identification & fixing: Leak testing with nitrogen, compressed air & soap solution. Fixing the leaks by brazing & rechecking.</li>
+                <li>Pre-service checks: Voltage, ampere, pressure, and other safety checks.</li>
+              </ul>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={6}>
+          <Card className="mb-4">
+            <Card.Header className="bg-primary text-light">Foam & Power Jet Window AC Service</Card.Header>
+            <Card.Body>
+              <p>Discover the excellence of Urban Company's Foam + Powerlet technology for your window AC. For AC service near me, experience 2X deeper dust removal.</p>
+              <ul>
+                <li>Pre-service checks: Detailed inspection, including gas checks, to identify repairs</li>
+                <li>AC cleaning: Deep cleaning of filters, coil, fins, and drain trays with foam and powerjet.</li>
+                <li>Final checks: The technician ensures proper functions by checking pipe blockage & drain tray leakage at the end of the service.</li>
+              </ul>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      </Container>
+
+      <div className="container mt-5">
+      <h4 className="text-center mb-4">About AC Repair & Service</h4>
+
+      <h4 className="mb-3">Services Offered in AC Service And Repair</h4>
+      <ul className="list-group mb-4">
+        <li className="list-group-item">
+          <strong>Repairs:</strong> Choose this option for diagnosis and repair of your ac. The professional will check the ac upon visitation and provide with
+          quotation depending on the condition of the appliance.
+        </li>
+        <li className="list-group-item">
+          <strong>Installing an AC:</strong> Choose this service for ac installation at your place. The professional will ensure that the ac is running properly
+          as gas pressure and performance of the appliance will be checked post ac installation.
+        </li>
+        <li className="list-group-item">
+          <strong>Wet services:</strong> This service includes an end to end cleaning of your ac (which is not faulty). Cooling coils, condenser coils, outer
+          panel, drain and filet pipes will be extensively cleaned and washed. However, high-pressure jet pumps will not be used for the cleaning purpose. Tick this service
+          when you want your ac to be properly cleaned.
+        </li>
+        <li className="list-group-item">
+          <strong>Uninstalling an existing ac:</strong> Select this option when you need professionals to dismount an ac. The appliance will be checked before the
+          ac uninstallation.
+        </li>
+      </ul>
+
+      <h4 className="mb-3">Why Urban Company AC Service And Repair?</h4>
+      <ul className="list-group mb-4">
+        <li className="list-group-item">
+          <strong>Customer Centric:</strong> All our services are curated keeping our customers in mind and AC repair service is no exception.
+        </li>
+        <li className="list-group-item">
+          <strong>Customer Protection:</strong> Unlike any other service provider, Urban Company provides a customer protection of Rs. 10,000 against damages.
+        </li>
+        <li className="list-group-item">
+          <strong>Verified Professionals:</strong> All the professionals on board with Urban Company are taken through a screening process to check for their expertise.
+        </li>
+        <li className="list-group-item">
+          <strong>Standardized pricing:</strong> To save our customers from unfair pricing, we have come up with the idea of standardized pricing with the rate card
+          shared on both our website and App.
+        </li>
+        <li className="list-group-item">
+          <strong>Service Warranty:</strong> We at Urban Company take full ownership of our services and hence, this is the reason that we provide a service
+          warranty of 30 days.
+        </li>
+        <li className="list-group-item">
+          <strong>Online payment:</strong> Now pay hassle free post your service through our online portal. You will receive a link via SMS and/or email which will
+          take you to the online payment portal.
+        </li>
+      </ul>
+
+      <p className="mb-4">
+        Like any other machinery, an appliance such as ac needs to be maintained and looked after for its healthy functioning. Hence, the appliance should
+        receive a proper service before the start of summer season. After all, nothing can be worse than a broken or faulty ac. Hunting a service personnel
+        for ac repair in the sultry weather can be a hassle. You can now book a professional either for service and repair within minutes from your home. You don't
+        even need to clear your schedule as you can choose your desirable time slot. Urban Company's ac repair service has proven to be a blessing for our
+        customers as we continue to receive happy testimonials and ratings from our customers.
+      </p>
+
+      <h4 className="mb-3">How it works?</h4>
+      <p className="mb-4">
+        To find the best professionals near you in no time, you just need to go on the Urban Company website or App and search for 'AC Repair' in the search
+        tab. A pop up tab will open up wherein you will need to fill in the details according to your requirements. Questions such as what kind of service is
+        required - split ac or window ac, location, time, etc. compromise the questionnaire. Once your request is uploaded on the portal, a professional
+        will be at your doorstep at your requested time and location.
+      </p>
+      </div>
+
+      <footer className="footer mt-5 py-3 bg-light">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3">
+            <h5>Company</h5>
+            <ul className="list-unstyled">
+              <li><a href="#">About us</a></li>
+              <li><a href="#">Terms & conditions</a></li>
+              <li><a href="#">Privacy policy</a></li>
+              <li><a href="#">Anti-discrimination policy</a></li>
+              <li><a href="#">UC impact</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div className="col-md-3">
+            <h5>For customers</h5>
+            <ul className="list-unstyled">
+              <li><a href="#">UC reviews</a></li>
+              <li><a href="#">Categories near you</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+          </div>
+          <div className="col-md-3">
+            <h5>For partners</h5>
+            <p>Register as a professional</p>
+          </div>
+          <div className="col-md-3">
+            <h5>Social links</h5>
+            <ul className="list-inline">
+              <li className="list-inline-item"><a href="#"><i className="fab fa-twitter"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="fab fa-instagram"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
+            </ul>
+            <div className="mt-3">
+              <a href="#" className="btn btn-outline-secondary btn-sm"><i className="fab fa-apple"></i> App Store</a>
+              <a href="#" className="btn btn-outline-secondary btn-sm ml-2"><i className="fab fa-google-play"></i> Google Play</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="text-center mt-3">
+        <p className="mb-0">© Copyright 2024 Urban Company. All rights reserved. | CIN: U74140DL2014PTC274413</p>
+      </div>
+      </footer>
 
     </div>
   );
