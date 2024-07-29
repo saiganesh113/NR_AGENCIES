@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import './Userdashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link, Element } from 'react-scroll';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faWeight } from '@fortawesome/free-solid-svg-icons';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,11 +16,10 @@ import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const UserDashboard = () => {
+
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const data = {
     labels: ['5 ★', '4 ★', '3 ★', '2 ★', '1 ★'],
@@ -201,295 +202,340 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      {/* Services */}
-      <div className="services mb-4">
-      <div className="d-flex justify-content-between align-items-center mb-2">
+
+      {/* Floating Menu Bar */}
+      <div className="container mt-5">
+      <div className="floating-menu-container">
+        <div className="menu-button-container">
+          <button
+            className="btn btn-primary floating-menu"
+            id="menuButton"
+            onClick={toggleMenu}
+          >
+            Menu
+          </button>
+        </div>
+        <div className={`floating-menu-bar ${menuOpen ? 'show' : ''}`}>
+          <Link
+            to="service-section"
+            smooth={true}
+            duration={500}
+            className="menu-option"
+            onClick={toggleMenu} 
+          >
+            Service <FontAwesomeIcon icon={faToolbox} className="ms-2" />
+          </Link>
+          <Link
+            to="repair-section"
+            smooth={true}
+            duration={500}
+            className="menu-option"
+            onClick={toggleMenu} 
+          >
+            Repair <FontAwesomeIcon icon={faScrewdriverWrench} className="ms-2" />
+          </Link>
+          <Link
+            to="install-section"
+            smooth={true}
+            duration={500}
+            className="menu-option"
+            onClick={toggleMenu}
+          >
+            Install <FontAwesomeIcon icon={faPlus} className="ms-2" />
+          </Link>
+        </div>
+      </div>
+
+      <main>
+        <Element name="service-section" className="section">
+        <>
+        <div id="service-section" className="d-flex justify-content-between align-items-center mb-2">
         <h2>Services</h2>
-        <a href="#service" className="text-primary">Know more</a>
-      </div>
-      <div className="service-menu bg-light p-4 text-center">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card h-100">
-              <div className="row g-0 h-100">
-                <div className="col-md-8">
-                  <div className="card-body text-start">
-                    <p className="text-success mb-0"><b>Power Saver AC service</b></p>
-                    <h5 className="card-title">Split AC</h5>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                          fill="#572AC8"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
+        <a href="#service-section" className="text-primary">Know more</a>
+        </div>
+        <div className="service-menu bg-light p-4 text-center">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="row g-0 h-100">
+                  <div className="col-md-8">
+                    <div className="card-body text-start">
+                      <p className="text-success mb-0"><b>Power Saver AC service</b></p>
+                      <h5 className="card-title">Split AC</h5>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                            fill="#572AC8"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
+                      </div>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹619</p>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                            fill="#07794C"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                      </div>
+                      <ul className="custom-list list-unstyled">
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
+                        </li>
+                      </ul>
+                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
-                    <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹619</p>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                          fill="#07794C"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                    </div>
-                    <ul className="custom-list list-unstyled">
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
-                      </li>
-                    </ul>
-                    <a href="#cart" className="btn btn-primary">Add</a>
-                    <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  <div className="col-md-4">
+                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="col-md-6">
-            <div className="card h-100">
-              <div className="row g-0 h-100">
-                <div className="col-md-8">
-                  <div className="card-body text-start">
-                    <p className="text-success mb-0"><b>Power Saver AC service</b></p>
-                    <h5 className="card-title">window AC</h5>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                          fill="#572AC8"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
+  
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="row g-0 h-100">
+                  <div className="col-md-8">
+                    <div className="card-body text-start">
+                      <p className="text-success mb-0"><b>Power Saver AC service</b></p>
+                      <h5 className="card-title">window AC</h5>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                            fill="#572AC8"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
+                      </div>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹549</p>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                            fill="#07794C"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                      </div>
+                      <ul className="custom-list list-unstyled">
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
+                        </li>
+                      </ul>
+                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
-                    <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹549</p>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                          fill="#07794C"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                    </div>
-                    <ul className="custom-list list-unstyled">
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
-                      </li>
-                    </ul>
-                    <a href="#cart" className="btn btn-primary">Add</a>
-                    <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  <div className="col-md-4">
+                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="horizontal-line"></div>
-      {/*line*/}
-      <div className="service-menu bg-light p-4 text-center">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card h-100">
-              <div className="row g-0 h-100">
-                <div className="col-md-8">
-                  <div className="card-body text-start">
-                    <p className="text-success mb-0"><b>Anti-rust AC service</b></p>
-                    <h5 className="card-title">Deep clean</h5>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                          fill="#572AC8"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2">3.12 (302.2K reviews)</p>
+        <div class="horizontal-line"></div>
+        
+        <div className="service-menu bg-light p-4 text-center">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="row g-0 h-100">
+                  <div className="col-md-8">
+                    <div className="card-body text-start">
+                      <p className="text-success mb-0"><b>Anti-rust AC service</b></p>
+                      <h5 className="card-title">Deep clean</h5>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                            fill="#572AC8"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2">3.12 (302.2K reviews)</p>
+                      </div>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹919</p>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                            fill="#07794C"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                      </div>
+                      <ul className="custom-list list-unstyled">
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>prevents frequent gas leakages through a unique anti-rust spray</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Application on both split and window AC's</small>
+                        </li>
+                      </ul>
+                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
-                    <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹919</p>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                          fill="#07794C"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                    </div>
-                    <ul className="custom-list list-unstyled">
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>prevents frequent gas leakages through a unique anti-rust spray</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Application on both split and window AC's</small>
-                      </li>
-                    </ul>
-                    <a href="#cart" className="btn btn-primary">Add</a>
-                    <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  <div className="col-md-4">
+                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="horizontal-line"></div>
-      {/*line*/}
-      <div className="service-menu bg-light p-4 text-center">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="card h-100">
-              <div className="row g-0 h-100">
-                <div className="col-md-8">
-                  <div className="card-body text-start">
-                    <p className="text-success mb-0"><b>Ac service lite</b></p>
-                    <h5 className="card-title">Split</h5>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                          fill="#572AC8"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2">4.12 (396.2K reviews)</p>
+        <div class="horizontal-line"></div>
+  
+        <div className="service-menu bg-light p-4 text-center">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="row g-0 h-100">
+                  <div className="col-md-8">
+                    <div className="card-body text-start">
+                      <p className="text-success mb-0"><b>Ac service lite</b></p>
+                      <h5 className="card-title">Split</h5>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                            fill="#572AC8"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2">4.12 (396.2K reviews)</p>
+                      </div>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹519</p>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                            fill="#07794C"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                      </div>
+                      <ul className="custom-list list-unstyled">
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
+                        </li>
+                      </ul>
+                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
-                    <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹519</p>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                          fill="#07794C"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                    </div>
-                    <ul className="custom-list list-unstyled">
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
-                      </li>
-                    </ul>
-                    <a href="#cart" className="btn btn-primary">Add</a>
-                    <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  <div className="col-md-4">
+                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="col-md-6">
-            <div className="card h-100">
-              <div className="row g-0 h-100">
-                <div className="col-md-8">
-                  <div className="card-body text-start">
-                    <p className="text-success mb-0"><b>AC service lite</b></p>
-                    <h5 className="card-title">window AC</h5>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                          fill="#572AC8"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2">4.52 (526.2K reviews)</p>
+  
+            <div className="col-md-6">
+              <div className="card h-100">
+                <div className="row g-0 h-100">
+                  <div className="col-md-8">
+                    <div className="card-body text-start">
+                      <p className="text-success mb-0"><b>AC service lite</b></p>
+                      <h5 className="card-title">window AC</h5>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                            fill="#572AC8"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2">4.52 (526.2K reviews)</p>
+                      </div>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹449</p>
+                      <div className="d-flex align-items-center mb-2">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
+                            fill="#07794C"
+                          ></path>
+                        </svg>
+                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                      </div>
+                      <ul className="custom-list list-unstyled">
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
+                        </li>
+                        <li>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
+                        </li>
+                      </ul>
+                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
-                    <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹449</p>
-                    <div className="d-flex align-items-center mb-2">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                          fill="#07794C"
-                        ></path>
-                      </svg>
-                      <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                    </div>
-                    <ul className="custom-list list-unstyled">
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
-                      </li>
-                      <li>
-                        <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
-                      </li>
-                    </ul>
-                    <a href="#cart" className="btn btn-primary">Add</a>
-                    <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                   </div>
-                </div>
-                <div className="col-md-4">
-                  <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  <div className="col-md-4">
+                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      </div>
-
-      {/* Repair and gas refill */}
-      <div className="services mb-4">
-      <div className="d-flex justify-content-between align-items-center mb-2">
+        </>
+        </Element>
+        <Element name="repair-section" className="section">
+        <>
+          <div className="d-flex justify-content-between align-items-center mb-2">
         <h2>Repair & gas Refill</h2>
         <a href="#service" className="text-primary">Know more</a>
         </div>
@@ -768,11 +814,11 @@ const UserDashboard = () => {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Install and Uninstall */}
-      <div className="services mb-4">
-      <div className="d-flex justify-content-between align-items-center mb-2">
+        </>
+        </Element>
+        <Element name="install-section" className="section">
+        <>
+          <div className="d-flex justify-content-between align-items-center mb-2">
         <h2>Install & Uninstall</h2>
         <a href="#service" className="text-primary">Know more</a>
         </div>
@@ -995,25 +1041,10 @@ const UserDashboard = () => {
             </div>
           </div>
           </div>
-      </div>
-
-      {/* Floating Menu Bar */}
-      <div className="floating-menu-container">
-        <div className="menu-button-container">
-          <button
-            className="btn btn-primary floating-menu"
-            id="menuButton"
-            onClick={toggleMenu}
-          >
-            Menu
-          </button>
-        </div>
-        <div className={`floating-menu-bar ${menuOpen ? 'show' : ''}`}>
-        <div className="menu-option">Service <FontAwesomeIcon icon={faToolbox} className="ms-2" /></div>
-        <div className="menu-option">Repair <FontAwesomeIcon icon={faScrewdriverWrench} className="ms-2" /></div>
-        <div className="menu-option">Install <FontAwesomeIcon icon={faPlus} className="ms-2" /></div>
-      </div>
-      </div>
+        </>
+        </Element>
+      </main>
+    </div>
 
       <React.StrictMode>
         <FAQ />
@@ -1052,7 +1083,7 @@ const UserDashboard = () => {
       </div>
     
       <div className="container">
-      <h1 className="text-center mb-4">What are people near me looking for?</h1>
+      <h4 className="text-center mb-4">What are people near me looking for?</h4>
       <div className="row">
         <div className="col-md-6">
           <div className="card mb-3">
@@ -1090,7 +1121,7 @@ const UserDashboard = () => {
       </div>
       
       <div className="container mt-4">
-      <h3 className="text-center mb-4">Spotting The Signs: When To Seek AC Service Near Me</h3>
+      <h4 className="text-center mb-4">Spotting The Signs: When To Seek AC Service Near Me</h4>
       <div className="row">
         {content.map((item, index) => (
           <div className="col-md-4 mb-2" key={index}>
@@ -1106,21 +1137,277 @@ const UserDashboard = () => {
       </div>
       
       <div className="container mt-5">
-      <h1 className="text-center mb-5">Why Choose Urban Company For Your AC Service And Repair Needs Near Me?</h1>
+      <h4 className="text-center mb-5">Why Choose Urban Company For Your AC Service And Repair Needs Near Me?</h4>
       <p className="text-center mb-4">Are you tired of searching for 'ac repair services near me' or 'split ac service near me' and ending up with more confusion than solutions? Look no further – Urban Company is here to redefine your AC service experience near your area. Wondering what sets us apart? Let's dive into the reasons why choosing Urban Company is the smart choice for all your AC needs.</p>
       <div className="row">
         {content1.map((item, index) => (
           <div className="col-md-4 mb-2" key={index}>
             <div className="card h-100">
               <div className="card-body">
-                <h5 className="card-title">{item.title1}</h5>
-                <p className="card-text">{item.text1}</p>
+                <h5 className="card-title1">{item.title1}</h5>
+                <p className="card-text1">{item.text1}</p>
               </div>
             </div>
           </div>
         ))}
       </div>
-    </div>
+      </div>
+
+      <div className="container mt-5">
+        <h4 className="text-center mb-4">How To Book Your AC Service & Repair Services With Urban Company Near Me?</h4>
+        <p className="text-center mb-5">Welcome to the seamless world of Urban Company's AC service & repair services! Book us now for a perfect AC service, AC repair, gas filling, AC installation and AC uninstallation near you.</p>
+
+        <div className="row">
+          <div className="col-md-6">
+            <img src="path/to/your/image.png" alt="AC Service & Repair" className="img-fluid" />
+          </div>
+          <div className="col-md-6">
+            <h6>Step 1: Visit Urban Company's App or Website</h6>
+            <p>To embark on your AC service journey, simply open the Urban Company app or visit our website.</p>
+            <p>Choose the ‘ac service & repair’ section to explore a plethora of services tailored just for you.</p>
+
+            <h6>Step 2: Select Your Desired Service and Time Slot</h6>
+            <p>Search for ‘ac service Near Me,’ ‘ac repair near me,’ ‘ac installation near me’ or ‘ac cleaning service’ near me.</p>
+            <p>Browse through our extensive list of services, including foam jet AC service, power jet AC service, split AC repairs, window AC repairs, AC gas refill & recharge, AC installation & uninstallation.</p>
+            <p>Pick the service that suits your needs and select a convenient time slot.</p>
+
+            <h6>Step 3: Secure Online Payment & Flexible Options</h6>
+            <p>Once you've finalized your booking, make a hassle-free and secure online payment through our app or website. You can conveniently reschedule or cancel the booking as per your needs.</p>
+            <p>Enjoy peace of mind with our secure transaction process.</p>
+
+            <h6>Step 4: Automatic Professional Assignment</h6>
+            <p>Our advanced algorithms ensure that you get the best-suited professional for your chosen service based on availability, experience, and ratings.</p>
+            <p>Urban Company takes the matchmaking out of selecting a skilled and trustworthy professional.</p>
+          </div>
+        </div>
+
+        <div className="mt-5">
+          <h6>Post-Service Options</h6>
+          <p>Love the service and want to rebook the same professional? It's just a click away for our repeat customers.</p>
+          <p>In case you have any questions or concerns after the service, our ‘Help Center’ is ready to assist you.</p>
+          <p>After your professional is assigned, you can communicate with them through the Urban Company app. Have specific requests or questions? Feel free to chat!</p>
+          <p>Why wait? Book now and treat your AC to the care it deserves!</p>
+          <p>Now that you know the ins and outs of booking Urban Company’s AC Repair and Service, get ready to experience luxury as AC services like never before.</p>
+        </div>
+      </div>
+
+      <Container className="mt-5">
+      <h4 style={{ textAlign: 'center' }}>Discover Best AC Service Near Me: The Ultimate AC Cleaning Service By Urban Company</h4>
+      <p>
+        Welcome to the heart of our AC Repair and Service offerings! If you're searching for 'split ac service near me' or 'window ac service near me' or any related query, you've landed in the right place. Our mission is to ensure your ac operates at its peak efficiency, providing you with cool comfort throughout the year. Let's dive into the world of comprehensive ac service Booking with Urban Company.
+      </p>
+
+      <Row className="mt-4">
+        <Col md={6}>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Foam & Power Jet AC Service Near Me - Unleash The Power Of Deep Cleaning</h4>
+          <p style={{ fontSize: 'smaller', fontWeight : '100' }}>
+            Picture this: your ac unit, breathing in the dusty air near you, becomes a sanctuary for debris, hindering its performance. But fear not, for our Foam & Power Jet ac Service swoops in like a superhero, rescuing your ac from the clutches of dirt and grime, ensuring perfections like the best ac Filter Cleaning.
+          </p>
+          <ul>
+            <li>2X Deeper Dust Removal: With our innovative Foam + PowerJet technology, we ensure a thorough cleansing experience, leaving no particle behind.</li>
+            <li>Pre-Service Checks: Our technicians conduct detailed inspections, including gas checks, to pinpoint any potential repairs.</li>
+            <li>Mess-Free experience: Say goodbye to spills with our ac jacket, ensuring a tidy workspace post-service.</li>
+            <li>Final Checks: We wrap up the service by ensuring proper functioning, checking for pipe blockages and drain tray leakages.</li>
+            <li>Comprehensive Indoor & Outdoor Cleaning: From meticulously cleaning the indoor unit to powerfully rinsing the outdoor unit, we cover every nook and cranny.</li>
+          </ul>
+        </Col>
+        <Col md={6}>
+          <Image src="path-to-your-image.jpg" fluid alt="AC Service Image" />
+        </Col>
+      </Row>
+
+      <Row className="mt-4">
+        <Col md={6}>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Power Jet AC Service - Elevate Your Cooling Experience</h4>
+          <p>
+            When it comes to enhancing cooling performance, our Power Jet AC Service is the knight in shining armor your AC deserves. Bid farewell to lackluster cooling and embrace a revamped chill with our specialized servicing.
+          </p>
+          <ul>
+            <li style={{ fontSize: 'smaller', fontWeight : '100' }}>Pre & Post Service Checks: Our technicians leave no stone unturned, conducting thorough inspections before and after the service to ensure optimal functionality.</li>
+            <li style={{ fontSize: 'smaller', fontWeight : '100' }}>Enhanced Cooling Performance: Say hello to a refreshing breeze as we work our magic, leaving your ac unit working at its best.</li>
+            <li style={{ fontSize: 'smaller', fontWeight : '100' }}>Indoor & Basic Outdoor Cleaning: While we focus on intensively cleaning the indoor unit, we don’t skimp on ensuring the outdoor counterpart, ensuring enhanced overall servicing.</li>
+          </ul>
+        </Col>
+        <Col md={6}>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Anti-Rust Deep Clean AC Service - Shield Your AC Against Rust</h4>
+          <p>
+            In the battle against rust-induced gas leakages, our Anti-Rust Deep Clean AC Service emerges victorious, safeguarding your ac's longevity and performance.
+          </p>
+          <ul>
+            <li style={{ fontSize: 'smaller', fontWeight : '100' }}>Prevents Gas Leakages: Our unique anti-rust formula shields your ac from frequent gas leakages, ensuring long-lasting performance.</li>
+            <li style={{ fontSize: 'smaller', fontWeight : '100' }}>Applicable on Split & Window AC: Whether you own a split or window AC, our anti-rust treatment has got you covered.</li>
+          </ul>
+        </Col>
+      </Row>
+      </Container>
+
+      <Container className="mt-5">
+      <h4 className="text-center">Your Guide To Top "AC Repair Near Me" Services</h4>
+      <p style={{ fontSize: 'smaller', fontWeight : '100' }}>
+        Hi there! Need an AC repair? We've got the details. Looking for "split AC repair near me"? Or maybe "window AC repair near me"? Whatever your cooling unit needs, our service has it covered. We'll take great care to fix your AC right up. Your comfort companion will be running like new in no time!
+      </p>
+
+      <Row className="mt-4">
+        <Col md={6}>
+          <Image src="path-to-your-image.jpg" fluid alt="AC Repair Image" />
+        </Col>
+        <Col md={6}>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Understanding the Scope</h4>
+          <p>
+            Precision matters when your ac breaks down. Our repair technicians get deep inside your unit to find problems quickly, so it works great again. They take care of basic tune-ups and hard fixes with skill.
+          </p>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Inclusions and Exclusions</h4>
+          <p>
+            Our ac repair service checks everything carefully. We clean and maintain parts like coils and filters completely. But you should know that some spare parts, like ac pcb repairs, might cost extra if we need them and don’t have them ready.
+          </p>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Benefits Unveiled</h4>
+          <p>
+            Unleash continuous cooling bliss with our ac repair services near me wizardry. Wave ta-ta to irritating noises, patchy chills, and pesky drips! Our geniuses fine-tune your unit, granting uninterrupted refreshment and energy-saving prowess.
+          </p>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>The Procedure Unveiled</h4>
+          <p >
+            Behold! Our repair ritual is simplicity incarnate. First, we scan your ac with eagle eyes, exposing any hiding issues. Then, with laser focus and mastery, we methodically conquer each problem. Quality parts and state-of-the-art tools? You betcha! Everlasting relief awaits.
+          </p>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Details Matter</h4>
+          <p>
+            We know how crucial good attention to detail is. At Urban Company, thoroughness guides each repair service. Prior checks unlock complete understanding of the ac. Then an expert eye scans every part and function after service. Relax as a 30-day warranty promises stress-free reliability far beyond our visit.
+          </p>
+        </Col>
+      </Row>
+
+      <Row className="mt-4">
+        <Col>
+          <h4 style={{ fontSize: 'medium', fontWeight : '500' }}>Unlock Top-Notch AC Repair Services Near You With Urban Company</h4>
+          <p>
+            Air conditioner issues? No worries! Urban Company’s skilled professionals deliver stellar AC repair services. With extensive training and years of expertise, they prioritize your comfort and satisfaction. Their meticulous approach ensures a seamless experience.
+          </p>
+          <p>
+            Don’t fret about AC repair complexities. Urban Company’s exceptional service has got you covered. Entrust your cooling companion to their capable hands. Experience unparalleled reliability and efficiency today. Enjoy a refreshing breeze of convenience and peace of mind.
+          </p>
+        </Col>
+      </Row>
+      </Container>
+
+      <Container className="mt-5">
+      <h4 className="text-center">Need An AC Gas Refill? Look No Further!</h4>
+      <p>
+        If you're looking for an "ac gas refill near me", you've come to the right place! At Urban Company, we understand the importance of a well-functioning air conditioning system, especially in the sweltering heat near me. Our ac gas refill service is designed to ensure that your ac unit is running smoothly and efficiently, providing you with cool and comfortable air all year round.
+      </p>
+
+      <Row className="mt-4">
+        <Col md={6}>
+          <Image src="path-to-your-image.jpg" fluid alt="AC Gas Refill Image" />
+        </Col>
+        <Col md={6}>
+          <h4>What To Expect With Our AC Gas Refill Service:</h4>
+          <h4>Thorough Pre-Service Checks</h4>
+          <p>
+            Before starting the refill process, our expert technicians conduct a detailed inspection of your ac unit, including checking the gas levels to identify any repairs that may be needed.
+          </p>
+          <h4>Leak Identification and Fixing</h4>
+          <p>
+            Safety is our top priority. That’s why we use advanced techniques such as leak testing with nitrogen, compressed air, and soap solution to identify and fix any leaks in your ac system. Our technicians are skilled in brazing and recharging to ensure that your ac is leak-free.
+          </p>
+          <h4>Gas Refill</h4>
+          <p>
+            Once any leaks are fixed, we proceed with filling the gas by weight or back pressure, depending on the specific requirements of your ac unit. Our goal is to restore your AC’s cooling efficiency and performance.
+          </p>
+          <h4>Post-Service Cleanup</h4>
+          <p>
+            After completing the gas refill, our technicians perform a thorough cleanup of your ac unit and the surrounding service area, leaving no mess behind.
+          </p>
+          <h4>Final Checks</h4>
+          <p>
+            Before leaving, our technicians conduct final checks to ensure that your ac is functioning optimally. This includes checking AMP, pressure, air flow, temperature, and noise levels to guarantee your satisfaction.
+          </p>
+        </Col>
+      </Row>
+
+      <Row className="mt-4">
+        <Col>
+          <h4 >Why Urban Company Provides The Best AC Gas Refill Near Me?</h4>
+          <ul>
+            <li>
+              <strong>Expert Technicians:</strong> Our technicians are highly trained and experienced in handling all types of ac systems, ensuring a professional and reliable service every time.
+            </li>
+            <li>
+              <strong>30 Day Warranty:</strong> We stand behind the quality of our work. That’s why we offer a 30-day warranty on our ac gas refill service, giving you peace of mind.
+            </li>
+            <li>
+              <strong>Safety First:</strong> With Urban Company, you can trust that safety is our top priority. From background verified technicians to following strict SOPs for safety and hygiene, we ensure a safe and secure service experience.
+            </li>
+            <li>
+              <strong>Eco Friendly Approach:</strong> We understand the importance of sustainability. That’s why we use eco-friendly and non-toxic products in all our services, ensuring a safe environment for your family and pets.
+            </li>
+            <li>
+              <strong>Convenient Booking:</strong> Booking our ac gas refill service is easy and convenient. Simply visit our app or website, choose your service and preferred time slot, and leave the rest to us.
+            </li>
+          </ul>
+          <p>
+            When it comes to ac gas refill near you, Urban Company is your trusted partner. With our expert technicians, transparent pricing, and commitment to quality, you can rest assured that your ac unit is in good hands. So why wait? Book your ac gas refill with us today and enjoy the cool comfort of your home or office all year round!
+          </p>
+          <p><strong>Don’t let a faulty ac ruin your comfort. Book your ac gas refill service with Urban Company now!</strong></p>
+        </Col>
+      </Row>
+      </Container>
+
+      <Container className="mt-5">
+      <h2 className="text-center">AC Installation & Uninstallation Near Me</h2>
+      <p className="text-center">
+        Welcome to the hassle-free world of ac installation and uninstallation with Urban Company! Whether you're looking to beat the heat with a brand new ac installation or bidding farewell to your old unit with our seamless uninstallation service, we've got you covered. Let's dive into the details of how our services like ac installation and ac uninstallation near you can make your life easier.
+        <br/>
+        If you are looking for "ac installation service near me" or "split ac installation near me", Look no further
+      </p>
+
+      <Row className="mt-4">
+        <Col md={6}>
+          <Image src="path-to-your-installation-image.jpg" fluid alt="AC Installation Image" />
+          <h4 className="mt-3">"AC Installation Near Me" Service</h4>
+          <p>Comprehensive Installation</p>
+          <p>
+            Whether it's a split ac installation or a window ac installation, our professionals are equipped to handle it. From drilling and wiring connections to setting up the indoor and outdoor units, we take care of every aspect of the installation process.
+          </p>
+          <h4>Free Gas Check</h4>
+          <p>
+            Worried about gas leakage? Don't be. We include a thorough gas check as part of our installation service to ensure your ac operates efficiently without any leaks.
+          </p>
+          <h4>Standardized Equipment</h4>
+          <p>
+            We use advanced tools and high-quality materials for all our installations, guaranteeing efficient results and long-lasting performance.
+          </p>
+        </Col>
+        <Col md={6}>
+          <Image src="path-to-your-uninstallation-image.jpg" fluid alt="AC Uninstallation Image" />
+          <h4 className="mt-3">"AC Uninstallation Near Me" Service</h4>
+          <h4>Safe Removal</h4>
+          <p>
+            Our technicians will carefully uninstall both the indoor and outdoor units, ensuring no damage is caused to your property during the process.
+          </p>
+          <h4>Pipe Fixes</h4>
+          <p>
+            Worried about leftover pipes? We've got you covered. Our team will take care of any necessary pipe fixes, leaving your space tidy and free of clutter.
+          </p>
+          <h4>Cleanup</h4>
+          <p>
+            Once the uninstallation is complete, we'll clean up the service area, leaving it spotless and ready for the next steps.
+          </p>
+          <h4>Expert Advice</h4>
+          <p>
+            Have questions about your new AC, how to book ac service online or looking for recommendations? Our professionals are here to help. Feel free to ask for expert advice on maintenance, usage, and more.
+          </p>
+        </Col>
+      </Row>
+
+      <Row className="mt-4">
+        <Col>
+          <h4 className="text-center">Choose Urban Company For AC Installation & Uninstallation, Choose Top-Notch Experience</h4>
+          <p>
+            At Urban Company, we prioritize the importance of a properly installed ac for your comfort and convenience. With our ac installation and uninstallation services, you can rest assured knowing that your cooling needs are in safe hands. Book your service today and experience the difference for yourself!
+          </p>
+        </Col>
+      </Row>
+      </Container>
+
     </div>
   );
 };

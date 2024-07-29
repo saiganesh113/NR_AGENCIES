@@ -42,7 +42,7 @@
 }
 
 .menu-option:hover {
-  background-color: #0056b3;
+  border: 2px solid black;
 }
 
 .btn-primary.floating-menu {
@@ -55,7 +55,7 @@
 }
 
 .btn-primary.floating-menu:hover {
-  background-color: #0056b3;
+  border: 2px solid black;
 }
 
 .ms-2{
@@ -76,4 +76,24 @@
 .card-text {
   font-size: smaller;
   font-weight: 100;
+}
+
+.card-title1 {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.card-text1 {
+  font-size: smaller;
+  font-weight: 100;
+}
+
+p {
+  font-size: smaller;
+  font-weight: 100;
+}
+
+h4 {
+  font-size: medium;
+  font-weight: 700;
 }
