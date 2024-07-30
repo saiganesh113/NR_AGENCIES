@@ -1,24 +1,247 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 import './Userdashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link, Element } from 'react-scroll';
+import { Link, } from 'react-scroll';
 import { Card, CardBody, CardTitle, CardText, Button } from 'react-bootstrap'; 
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck, faWeight } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAQ from './FAQ';
+import { faShoppingCart,faBars, faBell } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Badge } from 'react-bootstrap';
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const UserDashboard = () => {
-
+  const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+    useEffect(() => {
+      // Fetch notifications from your web application
+      fetchNotifications();
+    }, []);
+  
+    const fetchNotifications = async () => {
+      // Replace with your API endpoint
+      const response = await fetch('/api/notifications');
+      const data = await response.json();
+      setNotifications(data);
+    };
+  
+    const services = [
+      {
+        id: 1,
+        name: 'Power Saver AC service',
+        type: 'Split AC',
+        price: 619,
+        reviews: '4.82 (526.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 45 Mins',
+        technology: 'Advanced Foam-jet technology',
+        cleaning: 'Deep jet cleaning of outdoor unit',
+        image: '/path/to/your/image.png',
+      }, 
+      {
+        id: 2,
+        name: 'Power Saver AC service',
+        type: 'Window AC',
+        price: 549,
+        reviews: '4.82 (526.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 45 Mins',
+        technology: 'Advanced Foam-jet technology',
+        cleaning: 'Deep jet cleaning of outdoor unit',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 3,
+        name: 'Anti-rust AC service',
+        type: 'Deep clean',
+        price: 919,
+        reviews: '3.12 (326.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Prevents frequent gas leakages through a unique anti-rust spray',
+        cleaning: 'Application on both split and window AC',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 4,
+        name: 'AC service lite',
+        type: 'Split',
+        price: 519,
+        reviews: '4.12 (426.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 30 Mins',
+        technology: 'Basic water-jet cleaning of indoor unit',
+        cleaning: 'Basic cleaning of outdoor unit',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 5,
+        name: 'AC service lite',
+        type: 'Window AC',
+        price: 449,
+        reviews: '4.52 (526.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 30 Mins',
+        technology: 'Basic water-jet cleaning of indoor unit',
+        cleaning: 'Basic cleaning of outdoor unit',
+        image: '/path/to/your/image.png',
+      },
+    ];
+    
+    const repair = [
+      {
+        id: 6,
+        name: 'AC repair (split/window)',
+        type: 'Less/no cooling',
+        price: 299,
+        reviews: '4.82 (426.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Detailed issue diagnosis with same day resolution',
+        cleaning: 'Visit charges of ₹229 will be adjusted in the final bill',
+        image: '/path/to/your/image.png',
+      }, 
+      {
+        id: 7,
+        name: 'AC repair (split/window)',
+        type: 'Power on issue',
+        price: 299,
+        reviews: '4.85 (510.8K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Detailed issue diagnosis with same day resolution',
+        cleaning: 'Visit charges of ₹229 will be adjusted in the final bill',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 8,
+        name: 'AC repair (split/window)',
+        type: 'Unwanted noise/smell',
+        price: 499,
+        reviews: '4.12 (326.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Detailed issue diagnosis with same day resolution',
+        cleaning: 'Visit charges of ₹229 will be adjusted in the final bill',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 9,
+        name: 'AC repair (split/window)',
+        type: 'Water leakage',
+        price: 619,
+        reviews: '4.72 (126.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 30 Mins',
+        technology: 'Detailed issue diagnosis with same day resolution',
+        cleaning: 'Visit charges of ₹229 will be adjusted in the final bill',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 10,
+        name: 'AC repair (split/window)',
+        type: 'Gas leak fix & refill',
+        price: 2500,
+        reviews: '4.52 (526.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 120 Mins',
+        technology: 'Through diagnosis leak identification & fixing, gas refill to avoid leakage',
+        image: '/path/to/your/image.png',
+      },
+    ];
+
+    const install = [
+      {
+        id: 11,
+        name: 'AC repair (split/window)',
+        type: 'Window AC Installation',
+        price: 1499,
+        reviews: '4.25 (412.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 150 Mins',
+        technology: 'Installation of indoor & outdoor units with free gas check',
+        cleaning: 'Procurement of spare parts (at extra cost)',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 12,
+        name: 'AC Installation',
+        type: 'Split AC Installation',
+        price: 2399,
+        reviews: '4.62 (512.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 150 Mins',
+        technology: 'Installation of indoor & outdoor units with free gas check',
+        cleaning: ' Procurement of spare parts (at extra cost)',
+        image: '/path/to/your/image.png',
+      },
+      {
+        id: 14,
+        name: 'AC Uninstallation',
+        type: 'Window AC Uninstallation',
+        price: 999,
+        reviews: '4.89 (115.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Uninstall of indoor & outdoor units',
+        cleaning: 'AC packing (material to be provided by the customer)',
+        image: '/path/to/your/image.png',
+      }, 
+      {
+        id: 15,
+        name: 'AC Uninstallation',
+        type: 'Split AC Uninstallation',
+        price: 299,
+        reviews: '4.87 (119.2K reviews)',
+        discount: '₹100 off 2nd item onwards',
+        warranty: '30-DAY WARRANTY',
+        time: 'Estimated time 60 Mins',
+        technology: 'Uninstall of indoor & outdoor units',
+        cleaning: ' AC cleaning (material to be provided by the customer)',
+        image: '/path/to/your/image.png',
+      },
+    ];
+
+    const handleAddToCart = (service) => {
+      setCart([...cart, service]);
+    };
+  
+    const totalAmount = cart.reduce((sum, item) => sum + item.price, 0);
+  
+    const handleShowCart = () => setShowCart(true);
+    const handleCloseCart = () => setShowCart(false);
+    const handlePayment = () => {
+      // Implement payment logic here
+      alert('Proceed to payment');
+    };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
@@ -150,13 +373,19 @@ const UserDashboard = () => {
     <div className="container">
       {/* Header Section */}
       <header className="d-flex justify-content-between align-items-center py-3">
-        <div className="logo">logo here</div>
-        <div className="location">location near me</div>
-        <div className="icons d-flex">
-          <i className="fas fa-shopping-cart"></i>
-          <i className="fas fa-bell ml-3"></i>
-        </div>
-      </header>
+      <div className="logo">logo here</div>
+      <div className="location">location near me</div>
+      <div className="icons d-flex">
+        <Button variant="link" onClick={handleShowCart}>
+          <FontAwesomeIcon icon={faShoppingCart} />
+          <Badge bg="secondary">{cart.length}</Badge>
+        </Button>
+        <Button variant="link" onClick={() => console.log('Show notifications')}>
+          <FontAwesomeIcon icon={faBell} />
+          <Badge bg="secondary">{notifications.length}</Badge>
+        </Button>
+      </div>
+    </header>
 
       {/* Video Placeholder */}
       <div className="video-placeholder mb-4">
@@ -203,6 +432,31 @@ const UserDashboard = () => {
         </div>
       </div>
 
+      <Modal show={showCart} onHide={handleCloseCart}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cart Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {cart.length === 0 ? (
+            <p>Your cart is empty</p>
+          ) : (
+            <ul>
+              {cart.map((item, index) => (
+                <li key={index}>{item.name} - {item.type} - ₹{item.price}</li>
+              ))}
+            </ul>
+          )}
+          <h5>Total Amount: ₹{totalAmount}</h5>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseCart}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handlePayment}>
+            Proceed to Payment
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       {/* Floating Menu Bar */}
       <div className="container mt-5">
@@ -246,362 +500,23 @@ const UserDashboard = () => {
           </Link>
         </div>
       </div>
-
-      <main>
-        <Element name="service-section" className="section">
-        <>
-        <div id="service-section" className="d-flex justify-content-between align-items-center mb-2">
+      <>
+      <div id="service-section" className="d-flex justify-content-between align-items-center mb-2">
         <h2>Services</h2>
         <a href="#service-section" className="text-primary">Know more</a>
-        </div>
-        <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>Power Saver AC service</b></p>
-                      <h5 className="card-title">Split AC</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹619</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>Power Saver AC service</b></p>
-                      <h5 className="card-title">window AC</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.82 (526.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹549</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 45 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="horizontal-line"></div>
-        
-        <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>Anti-rust AC service</b></p>
-                      <h5 className="card-title">Deep clean</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">3.12 (302.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹919</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>prevents frequent gas leakages through a unique anti-rust spray</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Application on both split and window AC's</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="horizontal-line"></div>
-  
-        <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>Ac service lite</b></p>
-                      <h5 className="card-title">Split</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.12 (396.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹519</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC service lite</b></p>
-                      <h5 className="card-title">window AC</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.52 (526.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹449</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 30 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic water-jet cleaning of indoor unit</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Basic cleaning of outdoor unit</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </>
-        </Element>
-        <Element name="repair-section" className="section">
-        <>
-          <div className="d-flex justify-content-between align-items-center mb-2">
-        <h2>Repair & gas Refill</h2>
-        <a href="#service" className="text-primary">Know more</a>
-        </div>
-          <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC repair (split/window)</b></p>
-                      <h5 className="card-title">Less/no cooling</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.88 (421.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹299</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Detailed issue diagnosis with same day resolution</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Visit Charges of ₹299 will be adjusted in the final bill</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
+      </div>
 
-            <div className="col-md-6">
+      <div className="row">
+        {services.map((service, index) => (
+          <React.Fragment key={service.id}>
+            {index === 3 && <div className="w-100"></div>}
+            <div className="col-md-6 mb-4">
               <div className="card h-100">
                 <div className="row g-0 h-100">
                   <div className="col-md-8">
                     <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC repair (split/window)</b></p>
-                      <h5 className="card-title">Power on issue</h5>
+                      <p className="text-success mb-0"><b>{service.name}</b></p>
+                      <h5 className="card-title">{service.type}</h5>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -611,9 +526,9 @@ const UserDashboard = () => {
                             fill="#572AC8"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2">4.87 (526.2K reviews)</p>
+                        <p className="mb-0 ms-2">{service.reviews}</p>
                       </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹299</p>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹{service.price}</p>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -621,96 +536,53 @@ const UserDashboard = () => {
                             fill="#07794C"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                        <p className="mb-0 ms-2 text-success">{service.discount}</p>
                       </div>
                       <ul className="custom-list list-unstyled">
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{service.warranty}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{service.time}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{service.technology}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{service.cleaning}</small>
                         </li>
                       </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <button onClick={() => handleAddToCart(service)} className="btn btn-primary">Add</button>
                       <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
                   </div>
                   <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                    <img src={service.image} className="card-img-top" alt="Service Image" />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          </div>
-          <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC repair (split/window)</b></p>
-                      <h5 className="card-title">Unwanted noise/ smell</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.58 (411.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹499</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Detailed issue diagnosis with same day resolution</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Visit Charges of ₹299 will be adjusted in the final bill</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
+          </React.Fragment>
+        ))}
+      </div>
+      </>
 
-            <div className="col-md-6">
+      <>
+      <div id="repair-section" className="d-flex justify-content-between align-items-center mb-2">
+        <h2>Repair & Gas refill</h2>
+        <a href="#repair-section" className="text-primary">Know more</a>
+      </div>
+
+      <div className="row">
+        {repair.map((repair, index) => (
+          <React.Fragment key={repair.id}>
+            <div className="col-md-6 mb-4">
               <div className="card h-100">
                 <div className="row g-0 h-100">
                   <div className="col-md-8">
                     <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC repair (split/window)</b></p>
-                      <h5 className="card-title">Water leakage</h5>
+                      <p className="text-success mb-0"><b>{repair.name}</b></p>
+                      <h5 className="card-title">{repair.type}</h5>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -720,9 +592,9 @@ const UserDashboard = () => {
                             fill="#572AC8"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2">4.62 (511.2K reviews)</p>
+                        <p className="mb-0 ms-2">{repair.reviews}</p>
                       </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹619</p>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹{repair.price}</p>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -730,161 +602,53 @@ const UserDashboard = () => {
                             fill="#07794C"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                        <p className="mb-0 ms-2 text-success">{repair.discount}</p>
                       </div>
                       <ul className="custom-list list-unstyled">
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{repair.warranty}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{repair.time}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Advanced Foam-jet technology</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{repair.technology}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Deep jet cleaning of outdoor unit</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{repair.cleaning}</small>
                         </li>
                       </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <button onClick={() => handleAddToCart(repair)} className="btn btn-primary">Add</button>
                       <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
                   </div>
                   <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                    <img src={repair.image} className="card-img-top" alt="Repair Image" />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          </div>
-          <div class="horizontal-line"></div>
-          <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>Fix & Refill</b></p>
-                      <h5 className="card-title">Gas leak fix & refill</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.12 (482.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹2500</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Through diagnosis, leak identification & fixing gas refill to avoid leakages</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Application on both split and window AC's</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        </>
-        </Element>
-        <Element name="install-section" className="section">
-        <>
-          <div className="d-flex justify-content-between align-items-center mb-2">
+          </React.Fragment>
+        ))}
+      </div>
+      </>
+
+      <>
+      <div id="install-section" className="d-flex justify-content-between align-items-center mb-2">
         <h2>Install & Uninstall</h2>
-        <a href="#service" className="text-primary">Know more</a>
-        </div>
-          <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC Installation</b></p>
-                      <h5 className="card-title">Window AC Installation</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.25 (412.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹1499</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 150 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Installation of indoor & outdoor units with free gas check</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Procurement of spare parts (at extra cost)</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <a href="#install-section" className="text-primary">Know more</a>
+      </div>
 
-            <div className="col-md-6">
+      <div className="row">
+        {install.map((install, index) => (
+          <React.Fragment key={install.id}>
+            <div className="col-md-6 mb-4">
               <div className="card h-100">
                 <div className="row g-0 h-100">
                   <div className="col-md-8">
                     <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC Installation</b></p>
-                      <h5 className="card-title">Split AC Installation</h5>
+                      <p className="text-success mb-0"><b>{install.name}</b></p>
+                      <h5 className="card-title">{install.type}</h5>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -894,9 +658,9 @@ const UserDashboard = () => {
                             fill="#572AC8"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2">4.62 (512.2K reviews)</p>
+                        <p className="mb-0 ms-2">{install.reviews}</p>
                       </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹2399</p>
+                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹{install.price}</p>
                       <div className="d-flex align-items-center mb-2">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
                           <path
@@ -904,147 +668,36 @@ const UserDashboard = () => {
                             fill="#07794C"
                           ></path>
                         </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
+                        <p className="mb-0 ms-2 text-success">{install.discount}</p>
                       </div>
                       <ul className="custom-list list-unstyled">
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{install.warranty}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 150 Mins</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{install.time}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Installation of indoor & outdoor units with free gas check</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{install.technology}</small>
                         </li>
                         <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Procurement of spare parts (at extra cost)</small>
+                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>{install.cleaning}</small>
                         </li>
                       </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
+                      <button onClick={() => handleAddToCart(install)} className="btn btn-primary">Add</button>
                       <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
                     </div>
                   </div>
                   <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
+                    <img src={install.image} className="card-img-top" alt="Install Image" />
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          </div>
-          <div class="horizontal-line"></div>
-          <div className="service-menu bg-light p-4 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC Uninstallation</b></p>
-                      <h5 className="card-title">Window AC Uninstallation</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.89 (11.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹999</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Uninstall of indoor & outdoor units</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>AC packing (material to be provided by the customer)</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-6">
-              <div className="card h-100">
-                <div className="row g-0 h-100">
-                  <div className="col-md-8">
-                    <div className="card-body text-start">
-                      <p className="text-success mb-0"><b>AC Uninstallation</b></p>
-                      <h5 className="card-title">Split AC Uninstallation</h5>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 20 20" fill="#572AC8" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
-                            fill="#572AC8"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2">4.87 (119.2K reviews)</p>
-                      </div>
-                      <p className="fw-bold" style={{ color: 'rgb(15, 15, 15)', fontFamily: 'os_bold' }}>Starts at ₹1199</p>
-                      <div className="d-flex align-items-center mb-2">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="#07794C" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                            d="M15 7.929L8.472 1.4a.997.997 0 00-.904-.274l-5.04 1.008a.5.5 0 00-.393.393l-1.008 5.04a.998.998 0 00.274.904L7.928 15a.999.999 0 001.414 0L15 9.343a.999.999 0 000-1.414zM5.25 6a.75.75 0 110-1.5.75.75 0 010 1.5z"
-                            fill="#07794C"
-                          ></path>
-                        </svg>
-                        <p className="mb-0 ms-2 text-success">₹100 off 2nd item onwards</p>
-                      </div>
-                      <ul className="custom-list list-unstyled">
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>30-DAY WARRANTY</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Estimated time 60 Mins</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>Uninstall of indoor & outdoor units</small>
-                        </li>
-                        <li>
-                          <FontAwesomeIcon icon={faCircleCheck} style={{ color: 'darkgreen' }} /> <small>AC cleaning (material to be provided by the customer)</small>
-                        </li>
-                      </ul>
-                      <a href="#cart" className="btn btn-primary">Add</a>
-                      <a href="#details" className="btn btn-link text-decoration-none text-primary ms-2">View details</a>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <img src="/path/to/your/image.png" className="card-img-top" alt="Service Image" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-        </>
-        </Element>
-      </main>
+          </React.Fragment>
+        ))}
+      </div>
+      </>
     </div>
 
       <React.StrictMode>
@@ -1738,5 +1391,4 @@ const UserDashboard = () => {
     </div>
   );
 };
-
 export default UserDashboard;
