@@ -18,6 +18,43 @@ import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const Header = ({ cart, handleShowCart, notifications }) => {
+  const [location, setLocation] = useState('Fetching location...');
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation(`Lat: ${latitude}, Lon: ${longitude}`);
+        },
+        (error) => {
+          setLocation('Location not available');
+        }
+      );
+    } else {
+      setLocation('Geolocation not supported');
+    }
+  }, []);
+
+  return (
+    <header className="d-flex justify-content-between align-items-center py-3">
+      <div className="logo">logo here</div>
+      <div className="location">{location}</div>
+      <div className="icons d-flex">
+        <Button variant="link" onClick={handleShowCart}>
+          <FontAwesomeIcon icon={faShoppingCart} />
+          <Badge bg="secondary">{cart.length}</Badge>
+        </Button>
+        <Button variant="link" onClick={() => console.log('Show notifications')}>
+          <FontAwesomeIcon icon={faBell} />
+          <Badge bg="secondary">{notifications.length}</Badge>
+        </Button>
+      </div>
+    </header>
+  );
+};
+
 const UserDashboard = () => {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
@@ -27,14 +64,8 @@ const UserDashboard = () => {
   useEffect(() => {
     fetchNotifications();
   }, []);
-
-    useEffect(() => {
-      // Fetch notifications from your web application
-      fetchNotifications();
-    }, []);
   
     const fetchNotifications = async () => {
-      // Replace with your API endpoint
       const response = await fetch('/api/notifications');
       const data = await response.json();
       setNotifications(data);
@@ -243,6 +274,12 @@ const UserDashboard = () => {
       alert('Proceed to payment');
     };
 
+    const allItems = [
+      ...services,
+      ...repair,
+      ...install,
+    ];
+    
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const data = {
@@ -371,21 +408,51 @@ const UserDashboard = () => {
 
   return (
     <div className="container">
-      {/* Header Section */}
-      <header className="d-flex justify-content-between align-items-center py-3">
-      <div className="logo">logo here</div>
-      <div className="location">location near me</div>
-      <div className="icons d-flex">
-        <Button variant="link" onClick={handleShowCart}>
-          <FontAwesomeIcon icon={faShoppingCart} />
-          <Badge bg="secondary">{cart.length}</Badge>
-        </Button>
-        <Button variant="link" onClick={() => console.log('Show notifications')}>
-          <FontAwesomeIcon icon={faBell} />
-          <Badge bg="secondary">{notifications.length}</Badge>
-        </Button>
+
+      <div>
+            <Header cart={cart} handleShowCart={handleShowCart} notifications={notifications} />
+
+            <Modal show={showCart} onHide={handleCloseCart}>
+              <Modal.Header closeButton>
+                <Modal.Title>Cart Details</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                {cart.length === 0 ? (
+                  <p>Your cart is empty</p>
+                ) : (
+                  <ul>
+                    {cart.map((item, index) => {
+                      const cartItem = allItems.find(service => service.id === item.id);
+                      if (!cartItem) return null;
+                      const discountedPrice = cartItem.price - 100;
+
+                      return (
+                        <li key={index} className="d-flex align-items-center mb-3">
+                          <img src={cartItem.image} alt={cartItem.name} className="img-thumbnail mr-3" style={{ width: '50px', height: '50px' }} />
+                          <div>
+                            <h6>{cartItem.name}</h6>
+                            <p>{cartItem.type}</p>
+                            <p><s>₹{cartItem.price}</s> ₹{discountedPrice}</p>
+                            <p>{cartItem.discount}</p>
+                            <p>{cartItem.time}</p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+                <h5>Total Amount: ₹{totalAmount}</h5>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseCart}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={() => alert('Proceeding to Payment')}>
+                  Proceed to Payment
+                </Button>
+              </Modal.Footer>
+            </Modal>
       </div>
-    </header>
 
       {/* Video Placeholder */}
       <div className="video-placeholder mb-4">
@@ -431,32 +498,6 @@ const UserDashboard = () => {
           </div>
         </div>
       </div>
-
-      <Modal show={showCart} onHide={handleCloseCart}>
-        <Modal.Header closeButton>
-          <Modal.Title>Cart Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {cart.length === 0 ? (
-            <p>Your cart is empty</p>
-          ) : (
-            <ul>
-              {cart.map((item, index) => (
-                <li key={index}>{item.name} - {item.type} - ₹{item.price}</li>
-              ))}
-            </ul>
-          )}
-          <h5>Total Amount: ₹{totalAmount}</h5>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseCart}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handlePayment}>
-            Proceed to Payment
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
       {/* Floating Menu Bar */}
       <div className="container mt-5">
