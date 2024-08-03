@@ -353,7 +353,7 @@ const UserDashboard = () => {
     { name: 'Zainul', date: 'July 2024', rating: 3, comment: "I didn't get 250 UC credit as confirmed by the Executive" },
     { name: 'Satyajeet', date: 'July 2024', rating: 5, comment: 'Very good 👍 service' },
   ];
-
+// change DONE
   const content = [
     {
       title: 'Window AC Installation - Simple & Smoot',
@@ -392,7 +392,7 @@ const UserDashboard = () => {
       text: 'Your home deserves top-notch care! Our home AC service aims to make sure you get exactly that. With a strong focus on efficiency and keeping customers happy, we ensure your window AC doesn’t just cool but does its job reliably day in and day out.'
     },
   ];
-
+// change DONE
   const content1 = [
     {
       title1: "Transparent Pricing and Hassle-Free Deals",
@@ -824,7 +824,7 @@ const UserDashboard = () => {
         <br/>
       </div>
     </div>
-
+{/* change DONE*/}
       <React.StrictMode>
         <FAQ />
       </React.StrictMode>,
@@ -900,7 +900,7 @@ const UserDashboard = () => {
       </div>
       
       <div className="container mt-4">
-      <h4 className="text-center mb-4">Spotting The Signs: When To Seek AC Service Near Me</h4>
+      <h4 className="text-center mb-4">Spotting The Signs: When To Seek AC Service Near By</h4>
       <div className="row">
         {content.map((item, index) => (
           <div className="col-md-4 mb-2" key={index}>
@@ -916,8 +916,8 @@ const UserDashboard = () => {
       </div>
       
       <div className="container mt-5">
-      <h4 className="text-center mb-5">Why Choose NR AGENCIES For Your AC Service And Repair Needs Near Me?</h4>
-      <p className="text-center mb-4">Are you tired of searching for 'ac repair services near me' or 'split ac service near me' and ending up with more confusion than solutions? Look no further – NR AGENCIES is here to redefine your AC service experience near your area. Wondering what sets us apart? Let's dive into the reasons why choosing NR AGENCIES is the smart choice for all your AC needs.</p>
+      <h4 className="text-center mb-5">Why Choose Urban Company For Your AC Service And Repair Needs Near Me?</h4>
+      <p className="text-center mb-4">Are you tired of searching for 'ac repair services near me' or 'split ac service near me' and ending up with more confusion than solutions? Look no further – Urban Company is here to redefine your AC service experience near your area. Wondering what sets us apart? Let's dive into the reasons why choosing Urban Company is the smart choice for all your AC needs.</p>
       <div className="row">
         {content1.map((item, index) => (
           <div className="col-md-4 mb-2" key={index}>
@@ -930,11 +930,12 @@ const UserDashboard = () => {
           </div>
         ))}
       </div>
-      </div>
+      </div>How To Book Your AC Service & Repair Services With NR Agencies Near Me?
 
       <div className="container mt-5">
-        <h4 className="text-center mb-4"></h4>
-        <p className="text-center mb-5">Welcome to the seamless world of NR Agencies's AC service & repair services! Book us now for a perfect AC service, AC repair, gas filling, AC installation and AC uninstallation near you.</p>
+        <h4 className="text-center mb-4">How To Book Your AC Service & Repair Services With Urban Company Near Me?</h4>
+        <p className="text-center mb-5">Welcome to the seamless world of Urban Company's AC service & repair services! Book us now for a perfect AC service, AC repair, gas filling, AC installation and AC uninstallation near you.</p>
+
         <div className="row">
           <div className="col-md-6">
             <img src="path/to/your/image.png" alt="AC Service & Repair" className="img-fluid" />
@@ -968,7 +969,7 @@ const UserDashboard = () => {
           <p>Presently that you know the influences and outs of saving NR Offices AC Repair and Benefit, get prepared to witness extravagance as AC administrations like noway ahead.</p>
         </div>
       </div>
-
+{/* change DONE*/}
       <Container className="mt-5">
       <h4 style={{ textAlign: 'center' }}>Find Best AC Service Near Me: The Extreme AC Cleaning Service By NR Agencies</h4>
       <p>
@@ -1018,7 +1019,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <Container className="mt-5">
       <h4 className="text-center">Your Direct To Best "AC Repair Near Me" Services</h4>
       <p style={{ fontSize: 'smaller', fontWeight : '100' }}>
@@ -1065,7 +1066,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <Container className="mt-5">
       <h4 className="text-center">Need An AC Gas Refill? See No Further!</h4>
       <p>
@@ -1128,7 +1129,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <Container className="mt-5">
       <h2 className="text-center">AC Installation & Uninstallation Near Me</h2>
       <p className="text-center">
@@ -1185,7 +1186,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <Container>
       <Row className="mt-5">
         <Col md="12">
@@ -1320,7 +1321,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <Container className="mt-5">
       <h4 className="text-center mb-4">Know More In Depth About AC Services And Repair Services By NR Agencies Near Me</h4>
       <Row className="justify-content-center">
@@ -1398,7 +1399,7 @@ const UserDashboard = () => {
         </Col>
       </Row>
       </Container>
-
+{/* change DONE*/}
       <div className="container mt-5">
       <h4 className="text-center mb-4">About AC Repair & Service</h4>
 
@@ -1499,7 +1500,7 @@ const UserDashboard = () => {
         </div>
       </div>
       <div className="text-center mt-3">
-        <p className="mb-0">© Copyright 2024 Urban Company. All rights reserved. | CIN: U74140DL2014PTC274413</p>
+        <p className="mb-0">© Copyright 2024 NR Agencies. All rights reserved. | CIN: U74140DL2014PTC274413</p>
       </div>
       </footer>
 
