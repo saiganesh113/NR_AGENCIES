@@ -3,17 +3,17 @@ import { Pie } from 'react-chartjs-2';
 import './Userdashboard.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, } from 'react-scroll';
-import { Card, CardBody, CardTitle, CardText, Button } from 'react-bootstrap'; 
+import { Card, CardBody, CardTitle, CardText, Button, Form} from 'react-bootstrap'; 
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { faToolbox } from '@fortawesome/free-solid-svg-icons';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import FAQ from './FAQ';
-import { faShoppingCart,faBars, faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBell,faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal, Badge } from 'react-bootstrap';
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
+import { useHistory } from 'react-router-dom';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -33,7 +33,66 @@ const UserDashboard = () => {
   const [showCartModal, setShowCartModal] = useState(false);
   const [location, setLocation] = useState('Fetching location...');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState('');
+  
+
+  const [personalDetails, setPersonalDetails] = useState({
+    photo: '',
+    firstName: '',
+    lastName: '',
+    mobileNumber: '',
+    email: '',
+    dateOfBirth: '',
+    address: '',
+    aadharNumber: '',
+    panNumber: ''
+  });
+
+
+  const handleProfileClick = () => setShowModal(true);
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditMode(false);
+  };
+
+  const handleEdit = () => setEditMode(true);
+
+  const handleSave = () => {
+    setEditMode(false);
+    setShowModal(false);
+    console.log('Personal Details Saved:', personalDetails);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalDetails({
+      ...personalDetails,
+      [name]: value
+    });
+  };
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPersonalDetails({
+          ...personalDetails,
+          photo: reader.result
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const history = useHistory();
+
+  const handleLogout = () => {
+    history.push('/login');
+  };
 
 
   useEffect(() => {
@@ -437,7 +496,11 @@ const UserDashboard = () => {
     <div>
 
       <header className="d-flex justify-content-between align-items-center py-3">
-        <div className="logo">logo here</div>
+        <div><Col xs={3} className="d-flex align-items-center">
+          <Button variant="link" onClick={handleProfileClick}>
+            <FontAwesomeIcon icon={faUserCircle} size="2x" />
+          </Button>
+        </Col></div>
         <div className="location">{location}</div>
         <div className="icons d-flex">
         <Button variant="primary" onClick={() => setShowCartModal(true)}>
@@ -1456,6 +1519,136 @@ const UserDashboard = () => {
         area, time, etc. compromise the survey. Once your request is transferred on the entry, a proficient will be at your doorstep at your asked time and area.
       </p>
       </div>
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {editMode ? (
+            <Form>
+              <Form.Group controlId="photo">
+                <Form.Label>Profile Photo</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePhotoChange}
+                />
+              </Form.Group>
+              {personalDetails.photo && (
+                <div className="photo-container">
+                  <img src={personalDetails.photo} alt="Profile" className="profile-photo" />
+                </div>
+              )}
+              <Form.Group controlId="firstName">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstName"
+                  value={personalDetails.firstName}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="lastName">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastName"
+                  value={personalDetails.lastName}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="mobileNumber">
+                <Form.Label>Mobile Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="mobileNumber"
+                  value={personalDetails.mobileNumber}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={personalDetails.email}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="dateOfBirth">
+                <Form.Label>Date of Birth</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="dateOfBirth"
+                  value={personalDetails.dateOfBirth}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="address">
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="address"
+                  value={personalDetails.address}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="aadharNumber">
+                <Form.Label>Aadhar Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="aadharNumber"
+                  value={personalDetails.aadharNumber}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group controlId="panNumber">
+                <Form.Label>PAN Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="panNumber"
+                  value={personalDetails.panNumber}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Form>
+          ) : (
+            <div>
+              {personalDetails.photo && (
+                <div className="photo-container">
+                  <img src={personalDetails.photo} alt="Profile" className="profile-photo" />
+                </div>
+              )}
+              <p><strong>First Name:</strong> {personalDetails.firstName}</p>
+              <p><strong>Last Name:</strong> {personalDetails.lastName}</p>
+              <p><strong>Mobile Number:</strong> {personalDetails.mobileNumber}</p>
+              <p><strong>Email:</strong> {personalDetails.email}</p>
+              <p><strong>Date of Birth:</strong> {personalDetails.dateOfBirth}</p>
+              <p><strong>Address:</strong> {personalDetails.address}</p>
+              <p><strong>Aadhar Number:</strong> {personalDetails.aadharNumber}</p>
+              <p><strong>PAN Number:</strong> {personalDetails.panNumber}</p>
+            </div>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleLogout} className="me-auto">
+            Logout
+          </Button>
+          {editMode ? (
+            <Button variant="primary" onClick={handleSave}>
+              Save
+            </Button>
+          ) : (
+            <Button variant="secondary" onClick={handleEdit}>
+              Edit
+            </Button>
+          )}
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <footer className="footer mt-5 py-3 bg-light">
       <div className="container">
