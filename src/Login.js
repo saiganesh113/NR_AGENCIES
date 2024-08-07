@@ -1,13 +1,12 @@
-// src/Login.js
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user');
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +25,8 @@ const Login = () => {
       localStorage.setItem('role', role);
 
       // Redirect based on role
-      if (role === 'admin') history.push('/admin');
-      else if (role === 'technician') history.push('/technician');
-      else history.push('/userdashboard');
+      if (role === 'technician') navigate('/technician');
+      else navigate('/userdashboard');
     } else {
       alert('Login failed. Please check your credentials.');
     }
@@ -71,7 +69,6 @@ const Login = () => {
             >
               <option value="user">User</option>
               <option value="technician">Technician</option>
-              <option value="admin">Admin</option>
             </select>
           </div>
           <button type="submit" className="btn btn-primary btn-block">Login</button>

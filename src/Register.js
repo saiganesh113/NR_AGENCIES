@@ -1,6 +1,5 @@
-// src/Register.js
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [firstName, setFirstName] = useState('');
@@ -10,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const history = useHistory();
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const validateForm = () => {
     const newErrors = {};
@@ -35,7 +34,7 @@ const Register = () => {
     console.log({ firstName, lastName, mobileNumber, email, password });
 
     // Redirect to the user dashboard page after successful registration
-    history.push('/user');
+    navigate('/user');
   };
 
   return (
@@ -126,4 +125,5 @@ const Register = () => {
     </div>
   );
 };
+
 export default Register;

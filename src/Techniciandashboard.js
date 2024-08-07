@@ -11,7 +11,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Bar } from 'react-chartjs-2';
 import PieChart from './piechart';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const TechnicianDashboard = () => {
   const [location, setLocation] = useState('Fetching location...');
@@ -138,10 +138,10 @@ const TechnicianDashboard = () => {
     ]
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    history.push('/login');
+    navigate('/login');
   };
 
   return (

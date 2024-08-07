@@ -13,7 +13,7 @@ import FAQ from './FAQ';
 import { faBell,faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal, Badge } from 'react-bootstrap';
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -23,7 +23,6 @@ const UserDashboard = () => {
   const [installations, setInstallations] = useState([]);
   const [allItems, setAllItems] = useState([]);
   const [notifications, setNotifications] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTime, setSelectedTime] = useState('');
@@ -88,10 +87,10 @@ const UserDashboard = () => {
     }
   };
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    history.push('/login');
+    navigate('/login');
   };
 
 
@@ -1660,14 +1659,14 @@ const UserDashboard = () => {
               <li><a href="#">Terms & conditions</a></li>
               <li><a href="#">Privacy policy</a></li>
               <li><a href="#">Anti-discrimination policy</a></li>
-              <li><a href="#">UC impact</a></li>
+              <li><a href="#">NR impact</a></li>
               <li><a href="#">Careers</a></li>
             </ul>
           </div>
           <div className="col-md-3">
             <h5>For customers</h5>
             <ul className="list-unstyled">
-              <li><a href="#">UC reviews</a></li>
+              <li><a href="#">NR reviews</a></li>
               <li><a href="#">Categories near you</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="#">Contact us</a></li>
