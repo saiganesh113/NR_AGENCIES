@@ -1,3 +1,15 @@
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030; 
+  background-color: white; 
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 60px;
+  line-height: 40px;
+}
 .floating-menu-container {
   position: fixed;
   bottom: 0;
@@ -95,4 +107,17 @@ h4 {
 li {
   font-size: smaller;
   font-weight: 300;
+}
+.whatsapp-icon {
+  position: fixed;
+  bottom: 150px;
+  right: 75px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color:white;
 }
