@@ -14,6 +14,7 @@ import { faBell,faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { Modal, Badge } from 'react-bootstrap';
 import {Chart as ChartJS,ArcElement,Tooltip,Legend,} from 'chart.js';
 import { useNavigate } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,6 +37,14 @@ const UserDashboard = () => {
   const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState('');
   
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Define the phone number and construct the WhatsApp link
+  const phoneNumber = '9390489074'; // Replace with your actual phone number
+  const whatsappLink = `https://wa.me/${phoneNumber}`;
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
 
   const [personalDetails, setPersonalDetails] = useState({
     photo: '',
@@ -45,8 +54,8 @@ const UserDashboard = () => {
     email: '',
     dateOfBirth: '',
     address: '',
-    aadharNumber: '',
-    panNumber: ''
+    // aadharNumber: '',
+    // panNumber: ''
   });
 
 
@@ -494,7 +503,7 @@ const UserDashboard = () => {
     <div className="container">
     <div>
 
-      <header className="d-flex justify-content-between align-items-center py-3">
+    <header className="fixed-header d-flex justify-content-between align-items-center py-3 px-4">
         <div><Col xs={3} className="d-flex align-items-center">
           <Button variant="link" onClick={handleProfileClick}>
             <FontAwesomeIcon icon={faUserCircle} size="2x" />
@@ -502,9 +511,9 @@ const UserDashboard = () => {
         </Col></div>
         <div className="location">{location}</div>
         <div className="icons d-flex">
-        <Button variant="primary" onClick={() => setShowCartModal(true)}>
+          <Button variant="primary" onClick={() => setShowCartModal(true)}>
           <i className="fa fa-shopping-cart"></i> ({cart.length})
-        </Button>
+          </Button>
           <Button variant="link" onClick={() => console.log('Show notifications')}>
             <FontAwesomeIcon icon={faBell} />
             <Badge bg="secondary">{notifications.length}</Badge>
@@ -885,6 +894,21 @@ const UserDashboard = () => {
         </div>
         <br/>
       </div>
+    </div>
+
+    {/* WhatsApp */}
+
+    <div>
+      {isVisible && (
+        <a
+          href={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-icon btn btn-success rounded-circle"
+        >
+          <i className="fab fa-whatsapp fa-2x"></i>
+        </a>
+      )}
     </div>
 {/* change DONE*/}
       <React.StrictMode>
@@ -1593,7 +1617,7 @@ const UserDashboard = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="aadharNumber">
+              {/* <Form.Group controlId="aadharNumber">
                 <Form.Label>Aadhar Number</Form.Label>
                 <Form.Control
                   type="text"
@@ -1610,7 +1634,7 @@ const UserDashboard = () => {
                   value={personalDetails.panNumber}
                   onChange={handleChange}
                 />
-              </Form.Group>
+              </Form.Group> */}
             </Form>
           ) : (
             <div>
@@ -1625,8 +1649,8 @@ const UserDashboard = () => {
               <p><strong>Email:</strong> {personalDetails.email}</p>
               <p><strong>Date of Birth:</strong> {personalDetails.dateOfBirth}</p>
               <p><strong>Address:</strong> {personalDetails.address}</p>
-              <p><strong>Aadhar Number:</strong> {personalDetails.aadharNumber}</p>
-              <p><strong>PAN Number:</strong> {personalDetails.panNumber}</p>
+              {/* <p><strong>Aadhar Number:</strong> {personalDetails.aadharNumber}</p>
+              <p><strong>PAN Number:</strong> {personalDetails.panNumber}</p> */}
             </div>
           )}
         </Modal.Body>
