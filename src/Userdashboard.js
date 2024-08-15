@@ -36,15 +36,45 @@ const UserDashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [error, setError] = useState('');
-  
-  const [isVisible, setIsVisible] = useState(true);
+  // const [isVisible, setIsVisible] = useState(true);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [selectedQuestion, setSelectedQuestion] = useState('');
+  // const [answer, setAnswer] = useState('');
+  // const [isOpen, setIsOpen] = useState(false);
 
   // Define the phone number and construct the WhatsApp link
-  const phoneNumber = '9390489074'; // Replace with your actual phone number
+  const phoneNumber = '9390489074';
   const whatsappLink = `https://wa.me/${phoneNumber}`;
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
+  const phoneLink = `tel:${phoneNumber}`;
+  // const toggleVisibility = () => {
+  //   setIsVisible(!isVisible);
+  // };
+  
+// const ChatBot = () => {
+
+//  // Function to toggle the modal visibility
+//   const toggleModal = () => {
+//     setIsModalOpen(!isModalOpen);
+//     setSelectedQuestion('');
+//     setAnswer('');
+//   };
+
+//   // List of questions and answers
+//   const questions = [
+//     { question: 'What services do you offer?', answer: 'We offer AC installation, repair, maintenance, and more.' },
+//     { question: 'How do I book a service appointment?', answer: 'You can call us at [Your Phone Number] or visit our website to book an appointment.' },
+//     { question: 'What are your service hours?', answer: 'Our service hours are Monday to Friday, 8:00 AM - 6:00 PM.' },
+//     { question: 'How much do your services cost?', answer: 'Service costs vary based on the service type. Contact us for a detailed quote.' },
+//     { question: 'Do you offer any guarantees?', answer: 'Yes, we offer a satisfaction guarantee on all our services.' },
+//   ];
+
+//   // Function to handle when a question is clicked
+//   const handleQuestionClick = (question) => {
+//     setSelectedQuestion(question.question);
+//     setAnswer(question.answer);
+//   };;
+// }; 
+
 
   const [personalDetails, setPersonalDetails] = useState({
     photo: '',
@@ -54,8 +84,6 @@ const UserDashboard = () => {
     email: '',
     dateOfBirth: '',
     address: '',
-    // aadharNumber: '',
-    // panNumber: ''
   });
 
 
@@ -899,17 +927,85 @@ const UserDashboard = () => {
     {/* WhatsApp */}
 
     <div>
-      {isVisible && (
+      {/* {isVisible && ( */}
         <a
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="whatsapp-icon btn btn-success rounded-circle"
-        >
+          className="whatsapp-icon btn btn-success rounded-circle">
           <i className="fab fa-whatsapp fa-2x"></i>
         </a>
-      )}
+      {/* )} */}
     </div>
+
+
+    {/* Phone */}
+    <div>
+      {/* {isVisible && ( */}
+        <a
+          href={phoneLink}
+          target="_blank"
+          className="phone-icon btn btn-success rounded-circle"
+        >
+          <i className="fas fa-phone fa-2x"></i>
+        </a>
+      {/* )} */}
+    </div>
+
+    {/* chat Bot*/}
+    <div>
+      {/* {isVisible && ( */}
+        <a
+          target="_blank"
+          className="chatbot-icon btn btn-primary rounded-circle"
+        >
+          <i className="fa-solid fa-comment fa-2x"></i>
+        </a>
+      {/* )} */}
+    </div>
+
+    {/* <div>
+      <button
+        className="chatbot-icon btn btn-primary rounded-circle"
+        onClick={toggleModal}
+      >
+        <i className="fa-solid fa-comment fa-2x"></i>
+      </button>
+
+      {isModalOpen && (
+        <div className="chatbot-modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">AC Repair ChatBot</h5>
+              <button type="button" className="close" onClick={toggleModal}>
+                <span>&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              {selectedQuestion ? (
+                <div>
+                  <h6>{selectedQuestion}</h6>
+                  <p>{answer}</p>
+                </div>
+              ) : (
+                <ul className="list-group">
+                  {questions.map((q, index) => (
+                    <li
+                      key={index}
+                      className="list-group-item question-item"
+                      onClick={() => handleQuestionClick(q)}
+                    >
+                      {q.question}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div> */}
+
 {/* change DONE*/}
       <React.StrictMode>
         <FAQ />
@@ -1617,24 +1713,6 @@ const UserDashboard = () => {
                   onChange={handleChange}
                 />
               </Form.Group>
-              {/* <Form.Group controlId="aadharNumber">
-                <Form.Label>Aadhar Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="aadharNumber"
-                  value={personalDetails.aadharNumber}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="panNumber">
-                <Form.Label>PAN Number</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="panNumber"
-                  value={personalDetails.panNumber}
-                  onChange={handleChange}
-                />
-              </Form.Group> */}
             </Form>
           ) : (
             <div>
@@ -1649,8 +1727,6 @@ const UserDashboard = () => {
               <p><strong>Email:</strong> {personalDetails.email}</p>
               <p><strong>Date of Birth:</strong> {personalDetails.dateOfBirth}</p>
               <p><strong>Address:</strong> {personalDetails.address}</p>
-              {/* <p><strong>Aadhar Number:</strong> {personalDetails.aadharNumber}</p>
-              <p><strong>PAN Number:</strong> {personalDetails.panNumber}</p> */}
             </div>
           )}
         </Modal.Body>
